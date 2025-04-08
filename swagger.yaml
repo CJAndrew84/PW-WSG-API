@@ -1,718 +1,2236 @@
----
-swagger: "2.0"
 info:
-  description: "This is a sample server Petstore server.  You can find out more about\
-    \ Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).\
-    \  For this sample, you can use the api key `special-key` to test the authorization\
-    \ filters."
-  version: "1.0.5"
-  title: "Swagger Petstore"
-  termsOfService: "http://swagger.io/terms/"
-  contact:
-    email: "apiteam@swagger.io"
-  license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "petstore.swagger.io"
-basePath: "/v2"
-tags:
-- name: "pet"
-  description: "Everything about your Pets"
-  externalDocs:
-    description: "Find out more"
-    url: "http://swagger.io"
-- name: "store"
-  description: "Access to Petstore orders"
-- name: "user"
-  description: "Operations about user"
-  externalDocs:
-    description: "Find out more about our store"
-    url: "http://swagger.io"
-schemes:
-- "https"
-- "http"
+  title: ProjectWise WSG APIs
+  description: ''
+  version: 1.0.0
+tags: []
 paths:
-  /pet/{petId}/uploadImage:
-    post:
-      tags:
-      - "pet"
-      summary: "uploads an image"
-      description: ""
-      operationId: "uploadFile"
-      consumes:
-      - "multipart/form-data"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "petId"
-        in: "path"
-        description: "ID of pet to update"
-        required: true
-        type: "integer"
-        format: "int64"
-      - name: "additionalMetadata"
-        in: "formData"
-        description: "Additional data to pass to server"
-        required: false
-        type: "string"
-      - name: "file"
-        in: "formData"
-        description: "file to upload"
-        required: false
-        type: "file"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/ApiResponse"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-  /pet:
-    post:
-      tags:
-      - "pet"
-      summary: "Add a new pet to the store"
-      description: ""
-      operationId: "addPet"
-      consumes:
-      - "application/json"
-      - "application/xml"
-      produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "Pet object that needs to be added to the store"
-        required: true
-        schema:
-          $ref: "#/definitions/Pet"
-      responses:
-        405:
-          description: "Invalid input"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-    put:
-      tags:
-      - "pet"
-      summary: "Update an existing pet"
-      description: ""
-      operationId: "updatePet"
-      consumes:
-      - "application/json"
-      - "application/xml"
-      produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "Pet object that needs to be added to the store"
-        required: true
-        schema:
-          $ref: "#/definitions/Pet"
-      responses:
-        400:
-          description: "Invalid ID supplied"
-        404:
-          description: "Pet not found"
-        405:
-          description: "Validation exception"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-  /pet/findByStatus:
+  /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}/NavNode!poly:
     get:
-      tags:
-      - "pet"
-      summary: "Finds Pets by status"
-      description: "Multiple status values can be provided with comma separated strings"
-      operationId: "findPetsByStatus"
-      produces:
-      - "application/json"
-      - "application/xml"
+      summary: ChildNavNodes
+      deprecated: false
+      description: ''
+      operationId: GetAllChildNavNode
+      tags: []
       parameters:
-      - name: "status"
-        in: "query"
-        description: "Status values that need to be considered for filter"
-        required: true
-        type: "array"
-        items:
-          type: "string"
-          enum:
-          - "available"
-          - "pending"
-          - "sold"
-          default: "available"
-        collectionFormat: "multi"
+        - name: baseurl
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{hubAddress}}{{baseUrl}}'
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: instanceId
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{instanceId}}'
       responses:
-        200:
-          description: "successful operation"
+        '200':
+          description: ''
+          headers: {}
           schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Pet"
-        400:
-          description: "Invalid status value"
+            type: object
+            properties: {}
       security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-  /pet/findByTags:
+        - basic: []
+      produces:
+        - application/octet-stream
+  /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode!poly:
     get:
-      tags:
-      - "pet"
-      summary: "Finds Pets by tags"
-      description: "Multiple tags can be provided with comma separated strings. Use\
-        \ tag1, tag2, tag3 for testing."
-      operationId: "findPetsByTags"
-      produces:
-      - "application/json"
-      - "application/xml"
+      summary: Get Top n NavNodes
+      deprecated: false
+      description: ''
+      operationId: GetTopXNavNode
+      tags: []
       parameters:
-      - name: "tags"
-        in: "query"
-        description: "Tags to filter by"
-        required: true
-        type: "array"
-        items:
-          type: "string"
-        collectionFormat: "multi"
+        - name: baseurl
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{hubAddress}}{{baseUrl}}'
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: $top
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '{{getn}}'
+        - name: Authorization
+          in: header
+          description: ''
+          required: false
+          type: string
+          x-example: >-
+            Token
+            PHNhbWw6QXNzZXJ0aW9uIHhtbG5zOnNhbWw9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjEuMDphc3NlcnRpb24iIEFzc2VydGlvbklEPSJacXY3Q1dfdHlzeTVRSi5vb2o2TTFuZlV1XzYiIElzc3VlSW5zdGFudD0iMjAyNS0wMS0yM1QxMjowMTowMS41NzNaIiBJc3N1ZXI9Imh0dHBzOi8vaW1zLmJlbnRsZXkuY29tLyIgTWFqb3JWZXJzaW9uPSIxIiBNaW5vclZlcnNpb249IjEiPjxzYW1sOkNvbmRpdGlvbnMgTm90QmVmb3JlPSIyMDI1LTAxLTIzVDExOjU2OjAxLjU3M1oiIE5vdE9uT3JBZnRlcj0iMjAyNS0wMS0yNFQxMjowMTowMS41NzNaIj48c2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uQ29uZGl0aW9uPjxzYW1sOkF1ZGllbmNlPnNzbzovL3B3LWludGVncmF0aW9uLXNlcnZlci8xMDE2PC9zYW1sOkF1ZGllbmNlPjwvc2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uQ29uZGl0aW9uPjwvc2FtbDpDb25kaXRpb25zPjxzYW1sOkF0dHJpYnV0ZVN0YXRlbWVudD48c2FtbDpTdWJqZWN0PjxzYW1sOk5hbWVJZGVudGlmaWVyPjI1YTgxNjBjLTU4MTUtNDU3Mi04Njc5LWRkMDQwNTg3MzA5Mzwvc2FtbDpOYW1lSWRlbnRpZmllcj48c2FtbDpTdWJqZWN0Q29uZmlybWF0aW9uPjxzYW1sOkNvbmZpcm1hdGlvbk1ldGhvZD51cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoxLjA6Y206c2VuZGVyLXZvdWNoZXM8L3NhbWw6Q29uZmlybWF0aW9uTWV0aG9kPjwvc2FtbDpTdWJqZWN0Q29uZmlybWF0aW9uPjwvc2FtbDpTdWJqZWN0PjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJiZWNvbW11bml0aWVzdXNlcm5hbWUiIEF0dHJpYnV0ZU5hbWVzcGFjZT0iaHR0cDovL3NjaGVtYXMuYmVudGxleS5jb20vd3MvMjAxMS8wMy9pZGVudGl0eS9jbGFpbXMiPjxzYW1sOkF0dHJpYnV0ZVZhbHVlPjI1YTgxNjBjLTU4MTUtNDU3Mi04Njc5LWRkMDQwNTg3MzA5Mzwvc2FtbDpBdHRyaWJ1dGVWYWx1ZT48L3NhbWw6QXR0cmlidXRlPjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJ1bHRpbWF0ZXNpdGUiIEF0dHJpYnV0ZU5hbWVzcGFjZT0iaHR0cDovL3NjaGVtYXMuYmVudGxleS5jb20vd3MvMjAxMS8wMy9pZGVudGl0eS9jbGFpbXMiPjxzYW1sOkF0dHJpYnV0ZVZhbHVlPjEwMDEzODM3NTc8L3NhbWw6QXR0cmlidXRlVmFsdWU+PC9zYW1sOkF0dHJpYnV0ZT48c2FtbDpBdHRyaWJ1dGUgQXR0cmlidXRlTmFtZT0icm9sZSIgQXR0cmlidXRlTmFtZXNwYWNlPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT5Qcm9qZWN0IE1hbmFnZXI8L3NhbWw6QXR0cmlidXRlVmFsdWU+PC9zYW1sOkF0dHJpYnV0ZT48c2FtbDpBdHRyaWJ1dGUgQXR0cmlidXRlTmFtZT0iZW1haWxhZGRyZXNzIiBBdHRyaWJ1dGVOYW1lc3BhY2U9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT5jaHJpcy5qLmFuZHJld0BhZWNvbS5jb208L3NhbWw6QXR0cmlidXRlVmFsdWU+PC9zYW1sOkF0dHJpYnV0ZT48c2FtbDpBdHRyaWJ1dGUgQXR0cmlidXRlTmFtZT0iZW50aXRsZW1lbnQiIEF0dHJpYnV0ZU5hbWVzcGFjZT0ibnM6dW5zcGVjaWZpZWQiPjxzYW1sOkF0dHJpYnV0ZVZhbHVlPk1BTkFHRURfU0VSVklDRVM8L3NhbWw6QXR0cmlidXRlVmFsdWU+PHNhbWw6QXR0cmlidXRlVmFsdWU+TkVXX0JFTlRMRVlfTEVBUk48L3NhbWw6QXR0cmlidXRlVmFsdWU+PHNhbWw6QXR0cmlidXRlVmFsdWU+RUxTX0ZPVVJfSFI8L3NhbWw6QXR0cmlidXRlVmFsdWU+PHNhbWw6QXR0cmlidXRlVmFsdWU+RTM2NV9BRERfU0VSVklDRVM8L3NhbWw6QXR0cmlidXRlVmFsdWU+PHNhbWw6QXR0cmlidXRlVmFsdWU+QkROPC9zYW1sOkF0dHJpYnV0ZVZhbHVlPjwvc2FtbDpBdHRyaWJ1dGU+PHNhbWw6QXR0cmlidXRlIEF0dHJpYnV0ZU5hbWU9Im5hbWVpZGVudGlmaWVyIiBBdHRyaWJ1dGVOYW1lc3BhY2U9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT4yNWE4MTYwYy01ODE1LTQ1NzItODY3OS1kZDA0MDU4NzMwOTM8L3NhbWw6QXR0cmlidXRlVmFsdWU+PC9zYW1sOkF0dHJpYnV0ZT48c2FtbDpBdHRyaWJ1dGUgQXR0cmlidXRlTmFtZT0idXNhZ2Vjb3VudHJ5aXNvIiBBdHRyaWJ1dGVOYW1lc3BhY2U9Imh0dHA6Ly9zY2hlbWFzLmJlbnRsZXkuY29tL3dzLzIwMTEvMDMvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT5HQjwvc2FtbDpBdHRyaWJ1dGVWYWx1ZT48L3NhbWw6QXR0cmlidXRlPjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJ1c2VyaWQiIEF0dHJpYnV0ZU5hbWVzcGFjZT0iaHR0cDovL3NjaGVtYXMuYmVudGxleS5jb20vd3MvMjAxMS8wMy9pZGVudGl0eS9jbGFpbXMiPjxzYW1sOkF0dHJpYnV0ZVZhbHVlPjI1YTgxNjBjLTU4MTUtNDU3Mi04Njc5LWRkMDQwNTg3MzA5Mzwvc2FtbDpBdHRyaWJ1dGVWYWx1ZT48L3NhbWw6QXR0cmlidXRlPjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJvcmdhbml6YXRpb25pZCIgQXR0cmlidXRlTmFtZXNwYWNlPSJodHRwOi8vc2NoZW1hcy5iZW50bGV5LmNvbS93cy8yMDExLzAzL2lkZW50aXR5L2NsYWltcyI+PHNhbWw6QXR0cmlidXRlVmFsdWU+QjkzQTAxODktMjkxMC00NzhELUFFQ0ItNkU3N0RDRjM2NTJFPC9zYW1sOkF0dHJpYnV0ZVZhbHVlPjwvc2FtbDpBdHRyaWJ1dGU+PHNhbWw6QXR0cmlidXRlIEF0dHJpYnV0ZU5hbWU9ImJlY29tbXVuaXRpZXNlbWFpbGFkZHJlc3MiIEF0dHJpYnV0ZU5hbWVzcGFjZT0iaHR0cDovL3NjaGVtYXMuYmVudGxleS5jb20vd3MvMjAxMS8wMy9pZGVudGl0eS9jbGFpbXMiPjxzYW1sOkF0dHJpYnV0ZVZhbHVlPmNocmlzLmouYW5kcmV3QGFlY29tLmNvbTwvc2FtbDpBdHRyaWJ1dGVWYWx1ZT48L3NhbWw6QXR0cmlidXRlPjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJjb3VudHJ5aXNvIiBBdHRyaWJ1dGVOYW1lc3BhY2U9Imh0dHA6Ly9zY2hlbWFzLmJlbnRsZXkuY29tL3dzLzIwMTEvMDMvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT5HQjwvc2FtbDpBdHRyaWJ1dGVWYWx1ZT48L3NhbWw6QXR0cmlidXRlPjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJpc2JlbnRsZXllbXBsb3llZSIgQXR0cmlidXRlTmFtZXNwYWNlPSJodHRwOi8vc2NoZW1hcy5iZW50bGV5LmNvbS93cy8yMDExLzAzL2lkZW50aXR5L2NsYWltcyI+PHNhbWw6QXR0cmlidXRlVmFsdWU+ZmFsc2U8L3NhbWw6QXR0cmlidXRlVmFsdWU+PC9zYW1sOkF0dHJpYnV0ZT48c2FtbDpBdHRyaWJ1dGUgQXR0cmlidXRlTmFtZT0iaXNtYXJrZXRpbmdwcm9zcGVjdCIgQXR0cmlidXRlTmFtZXNwYWNlPSJodHRwOi8vc2NoZW1hcy5iZW50bGV5LmNvbS93cy8yMDExLzAzL2lkZW50aXR5L2NsYWltcyI+PHNhbWw6QXR0cmlidXRlVmFsdWU+ZmFsc2U8L3NhbWw6QXR0cmlidXRlVmFsdWU+PC9zYW1sOkF0dHJpYnV0ZT48c2FtbDpBdHRyaWJ1dGUgQXR0cmlidXRlTmFtZT0iZ2l2ZW5uYW1lIiBBdHRyaWJ1dGVOYW1lc3BhY2U9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT5DaHJpczwvc2FtbDpBdHRyaWJ1dGVWYWx1ZT48L3NhbWw6QXR0cmlidXRlPjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJzdXJuYW1lIiBBdHRyaWJ1dGVOYW1lc3BhY2U9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT5BbmRyZXc8L3NhbWw6QXR0cmlidXRlVmFsdWU+PC9zYW1sOkF0dHJpYnV0ZT48c2FtbDpBdHRyaWJ1dGUgQXR0cmlidXRlTmFtZT0ib3JnYW5pemF0aW9uIiBBdHRyaWJ1dGVOYW1lc3BhY2U9Imh0dHA6Ly9zY2hlbWFzLmJlbnRsZXkuY29tL3dzLzIwMTEvMDMvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT5BRUNPTS0gQ1NTPC9zYW1sOkF0dHJpYnV0ZVZhbHVlPjwvc2FtbDpBdHRyaWJ1dGU+PHNhbWw6QXR0cmlidXRlIEF0dHJpYnV0ZU5hbWU9Im5hbWUiIEF0dHJpYnV0ZU5hbWVzcGFjZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMiPjxzYW1sOkF0dHJpYnV0ZVZhbHVlPmNocmlzLmouYW5kcmV3QGFlY29tLmNvbTwvc2FtbDpBdHRyaWJ1dGVWYWx1ZT48L3NhbWw6QXR0cmlidXRlPjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJoYXNfc2VsZWN0IiBBdHRyaWJ1dGVOYW1lc3BhY2U9Im5zOnVuc3BlY2lmaWVkIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT50cnVlPC9zYW1sOkF0dHJpYnV0ZVZhbHVlPjwvc2FtbDpBdHRyaWJ1dGU+PHNhbWw6QXR0cmlidXRlIEF0dHJpYnV0ZU5hbWU9InVsdGltYXRlaWQiIEF0dHJpYnV0ZU5hbWVzcGFjZT0iaHR0cDovL3NjaGVtYXMuYmVudGxleS5jb20vd3MvMjAxMS8wMy9pZGVudGl0eS9jbGFpbXMiPjxzYW1sOkF0dHJpYnV0ZVZhbHVlPjU1NzcwM0M4LUEyQzYtNDg4Qi04NTVELTU1QjJDQzAzNjY1NTwvc2FtbDpBdHRyaWJ1dGVWYWx1ZT48L3NhbWw6QXR0cmlidXRlPjxzYW1sOkF0dHJpYnV0ZSBBdHRyaWJ1dGVOYW1lPSJ1bHRpbWF0ZXJlZmVyZW5jZWlkIiBBdHRyaWJ1dGVOYW1lc3BhY2U9Imh0dHA6Ly9zY2hlbWFzLmJlbnRsZXkuY29tL3dzLzIwMTEvMDMvaWRlbnRpdHkvY2xhaW1zIj48c2FtbDpBdHRyaWJ1dGVWYWx1ZT41NTc3MDNDOC1BMkM2LTQ4OEItODU1RC01NUIyQ0MwMzY2NTU8L3NhbWw6QXR0cmlidXRlVmFsdWU+PC9zYW1sOkF0dHJpYnV0ZT48L3NhbWw6QXR0cmlidXRlU3RhdGVtZW50PjxkczpTaWduYXR1cmUgeG1sbnM6ZHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyMiPjxkczpTaWduZWRJbmZvPjxkczpDYW5vbmljYWxpemF0aW9uTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIiAvPjxkczpTaWduYXR1cmVNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiAvPjxkczpSZWZlcmVuY2UgVVJJPSIjWnF2N0NXX3R5c3k1UUoub29qNk0xbmZVdV82Ij48ZHM6VHJhbnNmb3Jtcz48ZHM6VHJhbnNmb3JtIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3BlZC1zaWduYXR1cmUiIC8+PGRzOlRyYW5zZm9ybSBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMTAveG1sLWV4Yy1jMTRuIyIgLz48L2RzOlRyYW5zZm9ybXM+PGRzOkRpZ2VzdE1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZW5jI3NoYTI1NiIgLz48ZHM6RGlnZXN0VmFsdWU+VzZuSmU1QjhPSXg0ZUtrWlpSc0dNSkh5UlNCc0pzR1RjWm9rWDFnTTB1ND08L2RzOkRpZ2VzdFZhbHVlPjwvZHM6UmVmZXJlbmNlPjwvZHM6U2lnbmVkSW5mbz48ZHM6U2lnbmF0dXJlVmFsdWU+UU40Tm1EZ0RFZDRWaDM3M2ViRGdBTU03S2xITWQ3WllOWWcyZXFGZndNT1ptUzVPNEpyd3JPbEtOdUhvNGxHdFMrcTVxRElXaWJjc3VmUHFYQXlFUW9Bd2FpTGFrRGY3eXpFZXdobkYwamVKZjZmYXBlNlJab0xJdUVGVjVFL1FYN25RZjF5VmkvQkg0cjdXOVFnNklKOHJ3YzQzWTJiY3JoR0tnc0M3VnowWUtqTlNnc0Jna2hSMVlyTVkxUU03QWFEdlg3M1ZCS2F6RDgvYm53ZFBUUlVnZ3VTOTZSVnNiZEhKR29oRnpIc1R2K0tDT281TmNrbHhkbzlWaEg4eDhpVjBpQitrQkhxcU52SkZoUW1lS3BTQXVsdFRHUDhTb2VIdExCZE5Cd3J2OCs0eUhYaWVuYzg3MmZGVnVXSEVLMDNpVFNuMWNEd1ZlSk1tc1JqVzBBPT08L2RzOlNpZ25hdHVyZVZhbHVlPjxLZXlJbmZvIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjIj48WDUwOURhdGE+PFg1MDlDZXJ0aWZpY2F0ZT5NSUlISmpDQ0JnNmdBd0lCQWdJUUJ0Ry9Kak14K3IzMERWcnZCNEJtYnpBTkJna3Foa2lHOXcwQkFRc0ZBREJaTVFzd0NRWURWUVFHRXdKVlV6RVZNQk1HQTFVRUNoTU1SR2xuYVVObGNuUWdTVzVqTVRNd01RWURWUVFERXlwRWFXZHBRMlZ5ZENCSGJHOWlZV3dnUnpJZ1ZFeFRJRkpUUVNCVFNFRXlOVFlnTWpBeU1DQkRRVEV3SGhjTk1qUXhNVEEwTURBd01EQXdXaGNOTWpVeE1qQXlNak0xT1RVNVdqQ0JoREVMTUFrR0ExVUVCaE1DVlZNeEZUQVRCZ05WQkFnVERGQmxibTV6ZVd4MllXNXBZVEVPTUF3R0ExVUVCeE1GUlhoMGIyNHhKakFrQmdOVkJBb1RIVUpsYm5Sc1pYa2dVM2x6ZEdWdGN5d2dTVzVqYjNKd2IzSmhkR1ZrTVNZd0pBWURWUVFERXgxcGJYTXRkRzlyWlc0dGMybG5ibWx1Wnk1aVpXNTBiR1Y1TG1OdmJUQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQUtXMDgwK1lxa3NNcTc5bXJ2Ry9UczFQOFJLaE9EaFMySXQxMk1NSlpnc3FWVnpCbEMyS2NVMndCUmNsaTZ5Qythc0V0N3V6S2h3WXFuN1hsMG00WlIvbGxnQXNFOGRIdm52NnBLQnJOUHR2d2lKYzdHZ3REQzR1Q3d5b3ZFSDBDOW40SERMcXZueU93emZtSUZROTk1dWZCaXgyTURMODhiMm44d3FrWENjaHRoc0tjbDhRRWIySWVVTmtra3NPTmtScnVZeTdWYWdpSVJIUW81TTg4N3NQNXhkZlRYSlc1d3FMRGh4RHRPemlpNXdhNlpyYk41OEVvdzZrK1JyVVF5ZDZrMlM0Yy9vUGhoOVR3MXFqa2JFK1dNVGpFYkRaZmx0VFRubU1CWWtiNERzaUJ0UXczYU5uNDZ2aDhSdUNVMTU1NWNrblplK2JyT05oZ3M1aWNQRUNBd0VBQWFPQ0E3d3dnZ080TUI4R0ExVWRJd1FZTUJhQUZIU0ZnTUJteDk4MzNzKzlLVGVxQXgyKzdjMFhNQjBHQTFVZERnUVdCQlRUL2g5VkJuYkV6eVpETVVLWC9jSjg2ZUZpeURCTEJnTlZIUkVFUkRCQ2doMXBiWE10ZEc5clpXNHRjMmxuYm1sdVp5NWlaVzUwYkdWNUxtTnZiWUloZDNkM0xtbHRjeTEwYjJ0bGJpMXphV2R1YVc1bkxtSmxiblJzWlhrdVkyOXRNRDRHQTFVZElBUTNNRFV3TXdZR1o0RU1BUUlDTUNrd0p3WUlLd1lCQlFVSEFnRVdHMmgwZEhBNkx5OTNkM2N1WkdsbmFXTmxjblF1WTI5dEwwTlFVekFPQmdOVkhROEJBZjhFQkFNQ0JhQXdIUVlEVlIwbEJCWXdGQVlJS3dZQkJRVUhBd0VHQ0NzR0FRVUZCd01DTUlHZkJnTlZIUjhFZ1pjd2daUXdTS0JHb0VTR1FtaDBkSEE2THk5amNtd3pMbVJwWjJsalpYSjBMbU52YlM5RWFXZHBRMlZ5ZEVkc2IySmhiRWN5VkV4VFVsTkJVMGhCTWpVMk1qQXlNRU5CTVMweExtTnliREJJb0VhZ1JJWkNhSFIwY0RvdkwyTnliRFF1WkdsbmFXTmxjblF1WTI5dEwwUnBaMmxEWlhKMFIyeHZZbUZzUnpKVVRGTlNVMEZUU0VFeU5UWXlNREl3UTBFeExURXVZM0pzTUlHSEJnZ3JCZ0VGQlFjQkFRUjdNSGt3SkFZSUt3WUJCUVVITUFHR0dHaDBkSEE2THk5dlkzTndMbVJwWjJsalpYSjBMbU52YlRCUkJnZ3JCZ0VGQlFjd0FvWkZhSFIwY0RvdkwyTmhZMlZ5ZEhNdVpHbG5hV05sY25RdVkyOXRMMFJwWjJsRFpYSjBSMnh2WW1Gc1J6SlVURk5TVTBGVFNFRXlOVFl5TURJd1EwRXhMVEV1WTNKME1Bd0dBMVVkRXdFQi93UUNNQUF3Z2dGK0Jnb3JCZ0VFQWRaNUFnUUNCSUlCYmdTQ0FXb0JhQUIyQUJMeFRqUzlVM0pNaEFZWnc0OC9laFA0NTdWaWg0aWNiVEFGaE92bGhpWTZBQUFCa3ZqU016VUFBQVFEQUVjd1JRSWdHMExsSnp4cmNDeFUwbUdwa205ZGxQdDlVUEpYNnVFQjcyVWJIbStwNGtrQ0lRRFdHNmgxWjZiNHFmZDA5MWFXTEJuUXdwT20vWGRwV3kwNmRGTUZkYWVRbUFCM0FIMVpIaExoZUNwN0hHRm5mRjc5K05DSFhCU2dUcFdldVFNdjJRNk1Mbm00QUFBQmt2alNNdlVBQUFRREFFZ3dSZ0loQVA2cmlzREY3dmFSY0xaRmpwbTl5ZENWdFhsc0xzT0JNZFRzNjhEYU8vcFZBaUVBNzJjei9VaXNtdXFrb09lL3M1cVRoZHJWUjNVVVhsNCtvS29qY0pkdFpBNEFkUURtMGpGalFIZU13UkJCQnRkeHVjN0Iwa0QybG9TRys3cUhNaDM5SGplT1VBQUFBWkw0MGpNSkFBQUVBd0JHTUVRQ0lFTGxxR1hwUUtKdkJzVFFlZjA2NGhsZElFWDRVMFVpRmFzVnk4c1Y1eE5CQWlBRzVwMVBQbFhFcDZWU0NZd2JxZGFGZTV1czJiZnJLMkNjVmtLNXBtOEFQVEFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBZFdyVS9heXpkSHNHQ0E1M0Y4bjdDTERPVkIxdWRpd1VENnZ2YUxYc3gzZGl2K3BtYkNvVDlGUDd2SE1VV2VzMW00K3Y5VFhicGZ1MmJtMmZ0a1B5OFBjMU8yN0djZXdFRE45YXdSYmFxbldpcHVsL1NVOFIxTWpINTF3MkdEUTY4SmNmNmExNXEyYm1yN0dJdXVubWxwRDVnSlhMOWRCdHl4cXdSQkZhZndoQ3RJeUM4NnlEZVFud3M4NThvNSs3VVVrYThJRGVSRHdxTU9GWjI3SUlDWlZTbTJlVUFZV1VCNEVnWTNsRUVUcW9uamdRQ1hQZnAyWU80UnExTVM5YmNTMmJGcDJ1emZUL2tnc21tLy9Iak1uM3lTQlpWbS8zdThJaTNDT1ZpK1Y4eVVMTjFPYTdGUGVWc3VVa0JQVnBZVDhiN0FuR0RrbWRBT0ZpWDRTZ2JBPT08L1g1MDlDZXJ0aWZpY2F0ZT48L1g1MDlEYXRhPjwvS2V5SW5mbz48L2RzOlNpZ25hdHVyZT48L3NhbWw6QXNzZXJ0aW9uPg==
       responses:
-        200:
-          description: "successful operation"
+        '200':
+          description: ''
+          headers: {}
           schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Pet"
-        400:
-          description: "Invalid tag value"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-      deprecated: true
-  /pet/{petId}:
+            type: object
+            properties:
+              instances:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    instanceId:
+                      type: string
+                    schemaName:
+                      type: string
+                    className:
+                      type: string
+                    properties:
+                      type: object
+                      properties:
+                        Key_TypeSystem:
+                          type: string
+                        Key_SchemaName:
+                          type: string
+                        Key_ClassName:
+                          type: string
+                        Key_InstanceId:
+                          type: string
+                        Label:
+                          type: string
+                        Description:
+                          type: string
+                        CollapsedImageID:
+                          type: string
+                        ExpandedImageID:
+                          type: string
+                        HasChildren:
+                          type: boolean
+                        Selectable:
+                          type: boolean
+                        IsEditable:
+                          type: boolean
+                        IsFileBacked:
+                          type: boolean
+                        IsCheckBoxEnabled:
+                          type: boolean
+                        IsCheckBoxVisible:
+                          type: boolean
+                        IsChecked:
+                          type: boolean
+                        IsDragEnabled:
+                          type: boolean
+                      required:
+                        - Key_TypeSystem
+                        - Key_SchemaName
+                        - Key_ClassName
+                        - Key_InstanceId
+                        - Label
+                        - Description
+                        - CollapsedImageID
+                        - ExpandedImageID
+                        - HasChildren
+                        - Selectable
+                        - IsEditable
+                        - IsFileBacked
+                        - IsCheckBoxEnabled
+                        - IsCheckBoxVisible
+                        - IsChecked
+                        - IsDragEnabled
+                    eTag:
+                      type: string
+                  required:
+                    - instanceId
+                    - schemaName
+                    - className
+                    - properties
+                    - eTag
+            required:
+              - instances
+      security: []
+      produces:
+        - application/json
+  /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode!poly:
     get:
-      tags:
-      - "pet"
-      summary: "Find pet by ID"
-      description: "Returns a single pet"
-      operationId: "getPetById"
-      produces:
-      - "application/json"
-      - "application/xml"
+      summary: Get NavNode where Label is like Project Number
+      deprecated: false
+      description: ''
+      operationId: GetNavNodeWhereLabelIsLikeProjectNumber
+      tags: []
       parameters:
-      - name: "petId"
-        in: "path"
-        description: "ID of pet to return"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: Label+like+'{{ProjectNumber}}'
       responses:
-        200:
-          description: "successful operation"
+        '200':
+          description: ''
+          headers: {}
           schema:
-            $ref: "#/definitions/Pet"
-        400:
-          description: "Invalid ID supplied"
-        404:
-          description: "Pet not found"
+            type: object
+            properties: {}
       security:
-      - api_key: []
-    post:
-      tags:
-      - "pet"
-      summary: "Updates a pet in the store with form data"
-      description: ""
-      operationId: "updatePetWithForm"
-      consumes:
-      - "application/x-www-form-urlencoded"
+        - basic: []
       produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - name: "petId"
-        in: "path"
-        description: "ID of pet that needs to be updated"
-        required: true
-        type: "integer"
-        format: "int64"
-      - name: "name"
-        in: "formData"
-        description: "Updated name of the pet"
-        required: false
-        type: "string"
-      - name: "status"
-        in: "formData"
-        description: "Updated status of the pet"
-        required: false
-        type: "string"
-      responses:
-        405:
-          description: "Invalid input"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-    delete:
-      tags:
-      - "pet"
-      summary: "Deletes a pet"
-      description: ""
-      operationId: "deletePet"
-      produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - name: "api_key"
-        in: "header"
-        required: false
-        type: "string"
-      - name: "petId"
-        in: "path"
-        description: "Pet id to delete"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        400:
-          description: "Invalid ID supplied"
-        404:
-          description: "Pet not found"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-  /store/order:
-    post:
-      tags:
-      - "store"
-      summary: "Place an order for a pet"
-      description: ""
-      operationId: "placeOrder"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "order placed for purchasing the pet"
-        required: true
-        schema:
-          $ref: "#/definitions/Order"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Order"
-        400:
-          description: "Invalid Order"
-  /store/order/{orderId}:
+        - application/json
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project/{instanceId}:
     get:
-      tags:
-      - "store"
-      summary: "Find purchase order by ID"
-      description: "For valid response try integer IDs with value >= 1 and <= 10.\
-        \ Other values will generated exceptions"
-      operationId: "getOrderById"
-      produces:
-      - "application/json"
-      - "application/xml"
+      summary: Get UserList that have Access to Folder
+      deprecated: false
+      description: ''
+      operationId: GetUserListThatHaveAccessToFolder
+      tags: []
       parameters:
-      - name: "orderId"
-        in: "path"
-        description: "ID of pet that needs to be fetched"
-        required: true
-        type: "integer"
-        maximum: 10
-        minimum: 1
-        format: "int64"
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: instanceId
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: 9d8a7a70-254f-4494-bfe8-9c312e33a662
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: ProjectParticipant-forward-UserCollection.$id
       responses:
-        200:
-          description: "successful operation"
+        '200':
+          description: ''
+          headers: {}
           schema:
-            $ref: "#/definitions/Order"
-        400:
-          description: "Invalid ID supplied"
-        404:
-          description: "Order not found"
-    delete:
-      tags:
-      - "store"
-      summary: "Delete purchase order by ID"
-      description: "For valid response try integer IDs with positive integer value.\
-        \ Negative or non-integer values will generate API errors"
-      operationId: "deleteOrder"
+            type: object
+            properties: {}
+      security:
+        - basic: []
       produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - name: "orderId"
-        in: "path"
-        description: "ID of the order that needs to be deleted"
-        required: true
-        type: "integer"
-        minimum: 1
-        format: "int64"
-      responses:
-        400:
-          description: "Invalid ID supplied"
-        404:
-          description: "Order not found"
-  /store/inventory:
+        - application/json
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project/{instanceId}/Documents:
     get:
-      tags:
-      - "store"
-      summary: "Returns pet inventories by status"
-      description: "Returns a map of status codes to quantities"
-      operationId: "getInventory"
+      summary: Get Documents in Folder By InstanceId
+      deprecated: false
+      description: ''
+      operationId: GetDocumentsInProjectByInstanceId
+      tags: []
+      parameters:
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: instanceId
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{instanceId}}'
+        - name: api.selectsettings
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: IncludeRelationshipsNotInSelect
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
       produces:
-      - "application/json"
+        - application/json
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project/{instanceId}/Project:
+    get:
+      summary: Get Folders in Folder By InstanceId
+      deprecated: false
+      description: ''
+      operationId: GetProjectsInProjectByInstanceId
+      tags: []
+      parameters:
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: instanceId
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{instanceId}}'
+        - name: api.selectsettings
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: IncludeRelationshipsNotInSelect
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project:
+    get:
+      summary: Get Project Resources
+      deprecated: false
+      description: ''
+      operationId: GetProjectResources
+      tags: []
+      parameters:
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: ProjectParent-forward-Project.$id+eq+%27{{instanceId}}%27
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '*'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project!poly:
+    get:
+      summary: Get Top n Folders on datasource Copy
+      deprecated: false
+      description: ''
+      operationId: GetTopNFoldersOnDatasource
+      tags: []
+      parameters:
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: $top
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '{{getn}}'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties:
+              instances:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    instanceId:
+                      type: string
+                    schemaName:
+                      type: string
+                    className:
+                      type: string
+                    properties:
+                      type: object
+                      properties:
+                        ComponentClassId:
+                          type: integer
+                        ComponentInstanceId:
+                          type: integer
+                        CreateTime:
+                          type: string
+                        Description:
+                          type: string
+                        EnvironmentId:
+                          type: integer
+                        IsConnectedProject:
+                          type: boolean
+                        IsRichProject:
+                          type: boolean
+                        Label:
+                          type: string
+                        Name:
+                          type: string
+                        StateId:
+                          type: integer
+                        UpdateTime:
+                          type: string
+                        WorkflowId:
+                          type: integer
+                        CreatedById:
+                          type: integer
+                        UpdatedById:
+                          type: integer
+                        OwnerId:
+                          type: integer
+                        TypeString:
+                          type: string
+                        Storage:
+                          type: string
+                        CreatedBy:
+                          type: string
+                        UpdatedBy:
+                          type: string
+                        Owner:
+                          type: string
+                        OwnerType:
+                          type: string
+                        ParentGuid:
+                          type: string
+                        Environment:
+                          type: string
+                        ConnectedProjectGuid:
+                          type: string
+                      required:
+                        - ComponentClassId
+                        - ComponentInstanceId
+                        - CreateTime
+                        - Description
+                        - EnvironmentId
+                        - IsConnectedProject
+                        - IsRichProject
+                        - Label
+                        - Name
+                        - ParentGuid
+                        - StateId
+                        - UpdateTime
+                        - WorkflowId
+                        - CreatedById
+                        - UpdatedById
+                        - OwnerId
+                        - TypeString
+                        - Storage
+                        - CreatedBy
+                        - UpdatedBy
+                        - Owner
+                        - OwnerType
+                    eTag:
+                      type: string
+                  required:
+                    - instanceId
+                    - schemaName
+                    - className
+                    - properties
+                    - eTag
+            required:
+              - instances
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/ProjectDocumentAccessRights:
+    get:
+      summary: GetProjectDocumentAccessRights
+      deprecated: false
+      description: ''
+      tags: []
       parameters: []
       responses:
-        200:
-          description: "successful operation"
+        '200':
+          description: ''
+          headers: {}
           schema:
-            type: "object"
-            additionalProperties:
-              type: "integer"
-              format: "int32"
+            type: object
+            properties: {}
       security:
-      - api_key: []
-  /user/createWithArray:
-    post:
-      tags:
-      - "user"
-      summary: "Creates list of users with given input array"
-      description: ""
-      operationId: "createUsersWithArrayInput"
-      consumes:
-      - "application/json"
+        - basic: []
       produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "List of user object"
-        required: true
-        schema:
-          type: "array"
-          items:
-            $ref: "#/definitions/User"
-      responses:
-        default:
-          description: "successful operation"
-  /user/createWithList:
-    post:
-      tags:
-      - "user"
-      summary: "Creates list of users with given input array"
-      description: ""
-      operationId: "createUsersWithListInput"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "List of user object"
-        required: true
-        schema:
-          type: "array"
-          items:
-            $ref: "#/definitions/User"
-      responses:
-        default:
-          description: "successful operation"
-  /user/{username}:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project!poly:
     get:
-      tags:
-      - "user"
-      summary: "Get user by user name"
-      description: ""
-      operationId: "getUserByName"
-      produces:
-      - "application/json"
-      - "application/xml"
+      summary: Get Project where InstanceId equals x
+      deprecated: false
+      description: ''
+      tags: []
       parameters:
-      - name: "username"
-        in: "path"
-        description: "The name that needs to be fetched. Use user1 for testing. "
-        required: true
-        type: "string"
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: instanceId+eq+'{{instanceId}}'
       responses:
-        200:
-          description: "successful operation"
+        '200':
+          description: ''
+          headers: {}
           schema:
-            $ref: "#/definitions/User"
-        400:
-          description: "Invalid username supplied"
-        404:
-          description: "User not found"
-    put:
-      tags:
-      - "user"
-      summary: "Updated user"
-      description: "This can only be done by the logged in user."
-      operationId: "updateUser"
-      consumes:
-      - "application/json"
+            type: object
+            properties: {}
+      security:
+        - basic: []
       produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - name: "username"
-        in: "path"
-        description: "name that need to be updated"
-        required: true
-        type: "string"
-      - in: "body"
-        name: "body"
-        description: "Updated user object"
-        required: true
-        schema:
-          $ref: "#/definitions/User"
-      responses:
-        400:
-          description: "Invalid user supplied"
-        404:
-          description: "User not found"
-    delete:
-      tags:
-      - "user"
-      summary: "Delete user"
-      description: "This can only be done by the logged in user."
-      operationId: "deleteUser"
-      produces:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - name: "username"
-        in: "path"
-        description: "The name that needs to be deleted"
-        required: true
-        type: "string"
-      responses:
-        400:
-          description: "Invalid username supplied"
-        404:
-          description: "User not found"
-  /user/login:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project:
     get:
-      tags:
-      - "user"
-      summary: "Logs user into the system"
-      description: ""
-      operationId: "loginUser"
-      produces:
-      - "application/json"
-      - "application/xml"
+      summary: Get Child Folders
+      deprecated: false
+      description: ''
+      tags: []
       parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
-        required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login in clear text"
-        required: true
-        type: "string"
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            ProjectParent-forward-Project.$id+eq+%27{{folderId}}%27+and+Name+eq+%27DDC%27
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '*'
       responses:
-        200:
-          description: "successful operation"
-          headers:
-            X-Expires-After:
-              type: "string"
-              format: "date-time"
-              description: "date in UTC when token expires"
-            X-Rate-Limit:
-              type: "integer"
-              format: "int32"
-              description: "calls per hour allowed by the user"
+        '200':
+          description: ''
+          headers: {}
           schema:
-            type: "string"
-        400:
-          description: "Invalid username/password supplied"
-  /user/logout:
-    get:
-      tags:
-      - "user"
-      summary: "Logs out current logged in user session"
-      description: ""
-      operationId: "logoutUser"
+            type: object
+            properties: {}
+      security:
+        - basic: []
       produces:
-      - "application/json"
-      - "application/xml"
+        - application/json
+    post:
+      summary: Create Folder(s)
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              instance:
+                type: object
+                properties:
+                  schemaName:
+                    type: string
+                  className:
+                    type: string
+                  instanceId:
+                    type: string
+                  changeState:
+                    type: string
+                  properties:
+                    type: object
+                    properties:
+                      Name:
+                        type: string
+                      Description:
+                        type: string
+                    required:
+                      - Name
+                      - Description
+                  relationshipInstances:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        schemaName:
+                          type: string
+                        className:
+                          type: string
+                        direction:
+                          type: string
+                        relatedInstance:
+                          type: object
+                          properties:
+                            schemaName:
+                              type: string
+                            className:
+                              type: string
+                            instanceId:
+                              type: string
+                          required:
+                            - schemaName
+                            - className
+                            - instanceId
+                required:
+                  - schemaName
+                  - className
+                  - instanceId
+                  - changeState
+                  - properties
+                  - relationshipInstances
+            required:
+              - instance
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /v2.8/Repositories/dataSourceAddress/PW_WSG/Project:
+    get:
+      summary: Get Child Folders Copy
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: ProjectParent-forward-Project.$id+eq+%27{{folderId}}%27
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '*'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties:
+              instances:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    instanceId:
+                      type: string
+                    schemaName:
+                      type: string
+                    className:
+                      type: string
+                    properties:
+                      type: object
+                      properties:
+                        ComponentClassId:
+                          type: integer
+                        ComponentInstanceId:
+                          type: integer
+                        CreateTime:
+                          type: string
+                        Description:
+                          type: string
+                        EnvironmentId:
+                          type: integer
+                        IsConnectedProject:
+                          type: boolean
+                        IsRichProject:
+                          type: boolean
+                        Label:
+                          type: string
+                        Name:
+                          type: string
+                        ParentGuid:
+                          type: string
+                        StateId:
+                          type: integer
+                        UpdateTime:
+                          type: string
+                        WorkflowId:
+                          type: integer
+                        CreatedById:
+                          type: integer
+                        UpdatedById:
+                          type: integer
+                        OwnerId:
+                          type: integer
+                        TypeString:
+                          type: string
+                        Storage:
+                          type: string
+                        CreatedBy:
+                          type: string
+                        UpdatedBy:
+                          type: string
+                        Owner:
+                          type: string
+                        OwnerType:
+                          type: string
+                        Environment:
+                          type: string
+                      required:
+                        - ComponentClassId
+                        - ComponentInstanceId
+                        - CreateTime
+                        - Description
+                        - EnvironmentId
+                        - IsConnectedProject
+                        - IsRichProject
+                        - Label
+                        - Name
+                        - ParentGuid
+                        - StateId
+                        - UpdateTime
+                        - WorkflowId
+                        - CreatedById
+                        - UpdatedById
+                        - OwnerId
+                        - TypeString
+                        - Storage
+                        - CreatedBy
+                        - UpdatedBy
+                        - Owner
+                        - OwnerType
+                        - Environment
+                    eTag:
+                      type: string
+            required:
+              - instances
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document/{instanceId}:
+    get:
+      summary: Get Specific Document by InstanceId
+      deprecated: false
+      description: ''
+      operationId: GetSpecificDocumentByInstanceId
+      tags: []
+      parameters:
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: instanceId
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{instanceId}}'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /v2.8/Repositories/dataSourceAddress/PW_WSG/Document/{instanceId}/$file:
+    get:
+      summary: Get Specific Document File by InstanceId
+      deprecated: false
+      description: ''
+      operationId: GetSpecificDocumentFileByInstanceId
+      tags: []
+      parameters:
+        - name: instanceId
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{instanceId}}'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document!poly:
+    get:
+      summary: Get Documents from Folder ID
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: DocumentParent-forward-Project.$id+eq+%27{{folderId}}%27
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            *,DocumentEnvironment-forward-Environment!poly.*,DocumentParent-forward-Project.*
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document/72cbe34c-5c21-47aa-9ec5-a0fc092cbeee/$file:
+    get:
+      summary: Get all Document file
+      deprecated: false
+      description: ''
+      tags: []
       parameters: []
       responses:
-        default:
-          description: "successful operation"
-  /user:
-    post:
-      tags:
-      - "user"
-      summary: "Create user"
-      description: "This can only be done by the logged in user."
-      operationId: "createUser"
-      consumes:
-      - "application/json"
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
       produces:
-      - "application/json"
-      - "application/xml"
+        - application/json
+  /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document!poly:
+    get:
+      summary: Get Top N Documents
+      deprecated: false
+      description: ''
+      operationId: GetTopNDocuments
+      tags: []
       parameters:
-      - in: "body"
-        name: "body"
-        description: "Created user object"
-        required: true
-        schema:
-          $ref: "#/definitions/User"
+        - name: baseurl
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{hubAddress}}{{baseUrl}}'
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: $top
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '1'
       responses:
-        default:
-          description: "successful operation"
-securityDefinitions:
-  api_key:
-    type: "apiKey"
-    name: "api_key"
-    in: "header"
-  petstore_auth:
-    type: "oauth2"
-    authorizationUrl: "https://petstore.swagger.io/oauth/authorize"
-    flow: "implicit"
-    scopes:
-      read:pets: "read your pets"
-      write:pets: "modify pets in your account"
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project/instanceId/Document!poly:
+    get:
+      summary: Get all Documents in Folder
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/FlatSet/instanceId/Document!poly:
+    get:
+      summary: Get all Documents in Document Set
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/LogicalSet/1f2a924c-d530-4dc6-9f56-89b301dcced7/Document:
+    get:
+      summary: Get all Logical Sets
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $count
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document/documentId/:
+    get:
+      summary: Get Document Environment Attributes
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: DocumentEnvironment-forward-Environment!poly.*,*
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document:
+    post:
+      summary: Create Document from local
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              instance:
+                type: object
+                properties:
+                  schemaName:
+                    type: string
+                  className:
+                    type: string
+                  changeState:
+                    type: string
+                  properties:
+                    type: object
+                    properties:
+                      Name:
+                        type: string
+                      Description:
+                        type: string
+                      FileName:
+                        type: string
+                    required:
+                      - Name
+                      - Description
+                      - FileName
+                  relationshipInstances:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        schemaName:
+                          type: string
+                        className:
+                          type: string
+                        direction:
+                          type: string
+                        relatedInstance:
+                          type: object
+                          properties:
+                            schemaName:
+                              type: string
+                            className:
+                              type: string
+                            instanceId:
+                              type: string
+                          required:
+                            - schemaName
+                            - className
+                            - instanceId
+                required:
+                  - schemaName
+                  - className
+                  - changeState
+                  - properties
+                  - relationshipInstances
+              file:
+                type: object
+                properties: {}
+            required:
+              - instance
+              - file
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Environment!poly:
+    get:
+      summary: Get all Environments
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /{baseurl}/ws/v2.8/Repositories/dataSourceAddress/PW_WSG/Environment!poly:
+    get:
+      summary: Get Top n Environments
+      deprecated: false
+      description: ''
+      operationId: GetTopNEnvironments
+      tags: []
+      parameters:
+        - name: baseurl
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{hubAddress}}{{baseUrl}}'
+        - name: $top
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '{{getn}}'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document/instanceId:
+    get:
+      summary: Get Environment Form Definition
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            PW_WSG.DocumentEnvironment-forward-PW_WSG.Environment!poly/PW_WSG.EnvironmentFormDefinition-forward-Forms_EC_Mapping.FormDefinition.*
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/SavedSearchDefinition!poly:
+    get:
+      summary: Get Saved Searches by Name
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: Name+eq+'All Current HWEN Files'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/SavedSearchDefinition/instanceId/:
+    get:
+      summary: Get Saved Search and all documents Copy
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: SavedSearchResult-forward-Document!poly.*,*
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /v2.8/Repositories/dataSourceAddress/PW_WSG/SavedSearchDefinition/3777/:
+    get:
+      summary: Get Saved Search and all documents Copy
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: SavedSearchResult-forward-Document!poly.*,*
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /ws/v2.8/repositories/Bentley.PW--aecom-uk-pw.bentley.com~3AAECOM_DS02_UK-CLT/PW_WSG/Document!poly:
+    get:
+      summary: New Request
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            *,DocumentParent-forward-Project.*,DocumentEnvironment-forward-Environment!poly.*
+        - name: api.ancestor
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: Project-2ec9717b-d873-4ae7-afb9-dc12f3df281d
+        - name: api.filtersettings
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: CaseInsensitive
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: (((FileName%20ne%20%27null%27)%20and%20IsLatest%20eq%20true))
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /ws/v2.8/repositories/Bentley.PW--aecom-uk-pw.bentley.com~3AAECOM_DS02_UK-CLT/PW_WSG/savedsearchdefinition/3751:
+    get:
+      summary: New Request
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            SavedSearchDefaultDocumentListView-forward-View.*,SavedSearchDefaultDocumentListView-forward-View/ViewColumn-forward-Column.*
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /ws/v2.8/repositories/Bentley.PW--aecom-uk-pw.bentley.com~3AAECOM_DS02_UK-CLT/PW_WSG/savedsearchdefinition:
+    get:
+      summary: New Request
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: $id+eq+%273751%27
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            SavedSearchResult-forward-Document!poly.*,SavedSearchResult-forward-Document!poly/PW_WSG.DocumentEnvironment!poly-forward-PW_WSG.Environment!poly.*,SavedSearchResult-forward-Document!poly/PW_WSG.DocumentParent-forward-Project.*
+        - name: api.filtersettings
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: CaseInsensitive
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/repositories/dataSourceAddress/PW_WSG/Project/instanceId:
+    get:
+      summary: Get Project Participants
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: ProjectParticipant-forward-UserCollection.$id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/repositories/dataSourceAddress/PW_WSG/UserCollection!poly:
+    get:
+      summary: Get top n UserLists
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $top
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '{{getn}}'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/repositories/dataSourceAddress/PW_WSG/UserCollection/userCollectionID:
+    post:
+      summary: Add User to UserList
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              instance:
+                type: object
+                properties:
+                  schemaName:
+                    type: string
+                  className:
+                    type: string
+                  instanceId:
+                    type: string
+                  relationshipInstances:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        schemaName:
+                          type: string
+                        className:
+                          type: string
+                        direction:
+                          type: string
+                        changeState:
+                          type: string
+                        relatedInstance:
+                          type: object
+                          properties:
+                            schemaName:
+                              type: string
+                            className:
+                              type: string
+                            instanceId:
+                              type: string
+                          required:
+                            - schemaName
+                            - className
+                            - instanceId
+                required:
+                  - schemaName
+                  - className
+                  - instanceId
+                  - relationshipInstances
+            required:
+              - instance
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/User:
+    get:
+      summary: Get Current User
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: IsCurrent%20eq%20true
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: $id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/User!poly:
+    get:
+      summary: Get User by UserName Copy
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: ((Email+like+'jarrod')+and+(Email+like+'neill'))
+        - name: api.filtersettings
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: CaseInsensitive
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/User/200/:
+    post:
+      summary: Get User by UserName Copy 2
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              instance:
+                type: object
+                properties:
+                  instanceId:
+                    type: string
+                  schemaName:
+                    type: string
+                  className:
+                    type: string
+                  changeState:
+                    type: string
+                  properties:
+                    type: object
+                    properties:
+                      IsDisabled:
+                        type: boolean
+                    required:
+                      - IsDisabled
+                  eTag:
+                    type: string
+                required:
+                  - instanceId
+                  - schemaName
+                  - className
+                  - changeState
+                  - properties
+                  - eTag
+            required:
+              - instance
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/FlatSet!poly:
+    get:
+      summary: Get all Document Sets
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project/instanceId/FlatSet!poly:
+    get:
+      summary: Get all Document Sets in a Folder
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/FlatSet/instanceId:
+    post:
+      summary: Add Document to Document Set
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              instance:
+                type: object
+                properties:
+                  instanceId:
+                    type: string
+                  schemaName:
+                    type: string
+                  className:
+                    type: string
+                  properties:
+                    type: object
+                    properties: {}
+                  relationshipInstances:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        instanceId:
+                          type: string
+                        schemaName:
+                          type: string
+                        className:
+                          type: string
+                        direction:
+                          type: string
+                        properties:
+                          type: object
+                          properties: {}
+                        relatedInstance:
+                          type: object
+                          properties:
+                            instanceId:
+                              type: string
+                            schemaName:
+                              type: string
+                            className:
+                              type: string
+                            properties:
+                              type: object
+                              properties: {}
+                          required:
+                            - instanceId
+                            - schemaName
+                            - className
+                            - properties
+                required:
+                  - instanceId
+                  - schemaName
+                  - className
+                  - properties
+                  - relationshipInstances
+            required:
+              - instance
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/FlatSet:
+    post:
+      summary: Create new Document Set
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              instance:
+                type: object
+                properties:
+                  schemaName:
+                    type: string
+                  className:
+                    type: string
+                  changeState:
+                    type: string
+                  properties:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      description:
+                        type: string
+                      ParentGuid:
+                        type: string
+                    required:
+                      - name
+                      - description
+                      - ParentGuid
+                  relationshipInstances:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        schemaName:
+                          type: string
+                        className:
+                          type: string
+                        direction:
+                          type: string
+                        properties:
+                          type: object
+                          properties: {}
+                        relatedInstance:
+                          type: object
+                          properties:
+                            instanceId:
+                              type: string
+                            schemaName:
+                              type: string
+                            className:
+                              type: string
+                            properties:
+                              type: object
+                              properties: {}
+                          required:
+                            - instanceId
+                            - schemaName
+                            - className
+                            - properties
+                required:
+                  - schemaName
+                  - className
+                  - changeState
+                  - properties
+                  - relationshipInstances
+            required:
+              - instance
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/View!poly:
+    get:
+      summary: Get Default View by Folder
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '*,Column.*'
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            ProjectDefaultDocumentListView-backward-Project.$id%20eq%20%27{{instanceId}}%27
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/View/:
+    get:
+      summary: Get View based on Name
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: Name+like+'{{EnvironmentName}}'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project/instanceId:
+    get:
+      summary: Get Workflow associated with Folder
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: ProjectResource-forward-Workflow.*
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/repositories/dataSourceAddress/PW_WSG/CheckOutLocation!poly:
+    get:
+      summary: New Request
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $top
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '{{getn}}'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project/folderId:
+    options:
+      summary: New Request
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: ProjectParticipant.Role,ProjectParticipant-forward-User.Name
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Interface:
+    get:
+      summary: New Request
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: $filter
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            EnvironmentClassInterface-backward-MetaSchema.ECClassDef.$id%20eq%20%27N~3APW_WSG_Dynamic.01.02~3AEnv_152_CLT__x002d__00050__x002d__DOC__x002d__01%27
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectAccessRights:
+    get:
+      summary: Get Project Access Rights
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: $top
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: '{{getn}}'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties: {}
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /{baseurl}/ws/v2.8/repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef:
+    get:
+      summary: GetEcPropDefinitions
+      deprecated: false
+      description: ''
+      operationId: GetEcPropDefinitions
+      tags: []
+      parameters:
+        - name: baseurl
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{hubAddress}}{{baseUrl}}'
+        - name: dataSourceAddress
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{dataSourceAddress}}'
+        - name: $select
+          in: query
+          description: ''
+          required: true
+          type: string
+          x-example: >-
+            CustomAttributeContainerHasCustomAttribute-forward-DataSourceSpecification.StandardValues.EnumValues
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties:
+              instances:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    instanceId:
+                      type: string
+                    schemaName:
+                      type: string
+                    className:
+                      type: string
+                    properties:
+                      type: object
+                      properties: {}
+                    relationshipInstances:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          instanceId:
+                            type: string
+                          schemaName:
+                            type: string
+                          className:
+                            type: string
+                          direction:
+                            type: string
+                          properties:
+                            type: object
+                            properties: {}
+                          relatedInstance:
+                            type: object
+                            properties:
+                              instanceId:
+                                type: string
+                              schemaName:
+                                type: string
+                              className:
+                                type: string
+                              properties:
+                                type: object
+                                properties:
+                                  EnumValues:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        Value:
+                                          type: string
+                                        DisplayValue:
+                                          type: string
+                                      required:
+                                        - Value
+                                        - DisplayValue
+                                required:
+                                  - EnumValues
+                              eTag:
+                                type: string
+                            required:
+                              - instanceId
+                              - schemaName
+                              - className
+                              - properties
+                              - eTag
+                          eTag:
+                            type: string
+                        required:
+                          - instanceId
+                          - schemaName
+                          - className
+                          - direction
+                          - properties
+                          - relatedInstance
+                          - eTag
+                    eTag:
+                      type: string
+                  required:
+                    - instanceId
+                    - schemaName
+                    - className
+                    - properties
+                    - relationshipInstances
+                    - eTag
+            required:
+              - instances
+      security:
+        - basic: []
+      produces:
+        - application/json
+  /{baseurl}/ws/v2.8/Repositories/:
+    get:
+      summary: Get Datasources on Hub
+      deprecated: false
+      description: Return JSON package for the Datasources present on the Hub queried
+      operationId: GetDatasourcesOnHub
+      tags: []
+      parameters:
+        - name: baseurl
+          in: path
+          description: ''
+          required: true
+          type: string
+          x-example: '{{hubAddress}}{{baseUrl}}'
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties: {}
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          schema:
+            type: object
+            properties:
+              instances:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    instanceId:
+                      type: string
+                    schemaName:
+                      type: string
+                    className:
+                      type: string
+                    properties:
+                      type: object
+                      properties:
+                        ECPluginID:
+                          type: string
+                        Location:
+                          type: string
+                        DisplayLabel:
+                          type: string
+                        Description:
+                          type: string
+                      required:
+                        - ECPluginID
+                        - Location
+                        - DisplayLabel
+                        - Description
+                    eTag:
+                      type: string
+                  required:
+                    - instanceId
+                    - schemaName
+                    - className
+                    - properties
+                    - eTag
+            required:
+              - instances
+      security: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+security:
+  - basic: []
+swagger: '2.0'
 definitions:
-  ApiResponse:
-    type: "object"
+  DatasourceSchema:
+    type: object
     properties:
-      code:
-        type: "integer"
-        format: "int32"
-      type:
-        type: "string"
-      message:
-        type: "string"
-  Category:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
-        type: "string"
-    xml:
-      name: "Category"
-  Pet:
-    type: "object"
+      instances:
+        type: array
+        items:
+          type: object
+          properties:
+            instanceId:
+              type: string
+            schemaName:
+              type: string
+            className:
+              type: string
+            properties:
+              type: object
+              properties:
+                ECPluginID:
+                  type: string
+                Location:
+                  type: string
+                DisplayLabel:
+                  type: string
+                Description:
+                  type: string
+              required:
+                - ECPluginID
+                - Location
+                - DisplayLabel
+                - Description
+            eTag:
+              type: string
     required:
-    - "name"
-    - "photoUrls"
+      - instances
+  ProjectSchema:
+    type: object
     properties:
-      id:
-        type: "integer"
-        format: "int64"
-      category:
-        $ref: "#/definitions/Category"
-      name:
-        type: "string"
-        example: "doggie"
-      photoUrls:
-        type: "array"
-        xml:
-          wrapped: true
+      instances:
+        type: array
         items:
-          type: "string"
-          xml:
-            name: "photoUrl"
-      tags:
-        type: "array"
-        xml:
-          wrapped: true
-        items:
-          xml:
-            name: "tag"
-          $ref: "#/definitions/Tag"
-      status:
-        type: "string"
-        description: "pet status in the store"
-        enum:
-        - "available"
-        - "pending"
-        - "sold"
-    xml:
-      name: "Pet"
-  Tag:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
-        type: "string"
-    xml:
-      name: "Tag"
-  Order:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      petId:
-        type: "integer"
-        format: "int64"
-      quantity:
-        type: "integer"
-        format: "int32"
-      shipDate:
-        type: "string"
-        format: "date-time"
-      status:
-        type: "string"
-        description: "Order Status"
-        enum:
-        - "placed"
-        - "approved"
-        - "delivered"
-      complete:
-        type: "boolean"
-    xml:
-      name: "Order"
-  User:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      username:
-        type: "string"
-      firstName:
-        type: "string"
-      lastName:
-        type: "string"
-      email:
-        type: "string"
-      password:
-        type: "string"
-      phone:
-        type: "string"
-      userStatus:
-        type: "integer"
-        format: "int32"
-        description: "User Status"
-    xml:
-      name: "User"
-externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+          type: object
+          properties:
+            instanceId:
+              type: string
+            schemaName:
+              type: string
+            className:
+              type: string
+            properties:
+              type: object
+              properties:
+                ComponentClassId:
+                  type: integer
+                ComponentInstanceId:
+                  type: integer
+                CreateTime:
+                  type: string
+                Description:
+                  type: string
+                EnvironmentId:
+                  type: integer
+                IsConnectedProject:
+                  type: boolean
+                IsRichProject:
+                  type: boolean
+                Label:
+                  type: string
+                Name:
+                  type: string
+                StateId:
+                  type: integer
+                UpdateTime:
+                  type: string
+                WorkflowId:
+                  type: integer
+                CreatedById:
+                  type: integer
+                UpdatedById:
+                  type: integer
+                OwnerId:
+                  type: integer
+                TypeString:
+                  type: string
+                Storage:
+                  type: string
+                CreatedBy:
+                  type: string
+                UpdatedBy:
+                  type: string
+                Owner:
+                  type: string
+                OwnerType:
+                  type: string
+                ParentGuid:
+                  type: string
+                Environment:
+                  type: string
+                ConnectedProjectGuid:
+                  type: string
+              required:
+                - ComponentClassId
+                - ComponentInstanceId
+                - CreateTime
+                - Description
+                - EnvironmentId
+                - IsConnectedProject
+                - IsRichProject
+                - Label
+                - Name
+                - ParentGuid
+                - StateId
+                - UpdateTime
+                - WorkflowId
+                - CreatedById
+                - UpdatedById
+                - OwnerId
+                - TypeString
+                - Storage
+                - CreatedBy
+                - UpdatedBy
+                - Owner
+                - OwnerType
+            eTag:
+              type: string
+          required:
+            - instanceId
+            - schemaName
+            - className
+            - properties
+            - eTag
+    required:
+      - instances
+securityDefinitions:
+  basic:
+    type: basic
+x-components: {}
