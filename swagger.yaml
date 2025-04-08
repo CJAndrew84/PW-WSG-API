@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 tags: []
 paths:
-  {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}/NavNode!poly:
+  /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}/NavNode!poly:
     get:
       summary: ChildNavNodes
       deprecated: false
