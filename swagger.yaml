@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 tags: []
 paths:
-  /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}/NavNode!poly:
+  {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}/NavNode!poly:
     get:
       summary: ChildNavNodes
       deprecated: false
@@ -17,13 +17,13 @@ paths:
           description: ''
           required: true
           type: string
-          x-example: '{{hubAddress}}{{baseUrl}}'
+          x-example: 'https://{name}-{region}-pw.bentley.com'
         - name: dataSourceAddress
           in: path
           description: ''
           required: true
           type: string
-          x-example: '{{dataSourceAddress}}'
+          x-example: 'Bentley.PW--{name}-{region}-pw.bentley.com~3A{datasourceName}'
         - name: instanceId
           in: path
           description: ''
