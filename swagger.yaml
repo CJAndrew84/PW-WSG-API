@@ -2,7 +2,24 @@ info:
   title: ProjectWise WSG APIs
   description: ''
   version: 1.0.0
-tags: []
+tags: 
+  - name: Repositories
+  - name: Navigation/NavNodes
+  - name: PW_WSG/Project
+  - name: PW_WSG/Document
+  - name: PW_WSG/User
+  - name: PW_WSG/UserCollection
+  - name: PW_WSG/ProjectDocumentAccessRights
+  - name: PW_WSG/LogicalSet
+  - name: PW_WSG/FlatSet
+  - name: PW_WSG/Environment
+  - name: PW_WSG/SavedSearchDefinition
+  - name: PW_WSG/View
+  - name: PW_WSG/CheckOutLocation
+  - name: PW_WSG/Interface
+  - name: PW_WSG/ProjectAccessRights
+  - name: MetaSchema/ECPropertyDef
+  
 paths:
   /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}/NavNode!poly:
     get:
@@ -10,7 +27,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetAllChildNavNode
-      tags: []
+      tags: 
+        - Navigation/NavNodes
       parameters:
         - name: baseurl
           in: path
@@ -47,7 +65,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetTopXNavNode
-      tags: []
+      tags:
+        - Navigation/NavNodes
       parameters:
         - name: baseurl
           in: path
@@ -164,7 +183,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetNavNodeWhereLabelIsLikeProjectNumber
-      tags: []
+      tags: 
+        - Navigation/NavNodes
       parameters:
         - name: dataSourceAddress
           in: path
@@ -195,7 +215,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetUserListThatHaveAccessToFolder
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: dataSourceAddress
           in: path
@@ -232,7 +253,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetDocumentsInProjectByInstanceId
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: dataSourceAddress
           in: path
@@ -269,7 +291,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetProjectsInProjectByInstanceId
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: dataSourceAddress
           in: path
@@ -306,7 +329,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetProjectResources
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: dataSourceAddress
           in: path
@@ -343,7 +367,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetTopNFoldersOnDatasource
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: dataSourceAddress
           in: path
@@ -468,7 +493,8 @@ paths:
       summary: GetProjectDocumentAccessRights
       deprecated: false
       description: ''
-      tags: []
+      tags:
+        - PW_WSG/ProjectDocumentAccessRights
       parameters: []
       responses:
         '200':
@@ -486,7 +512,8 @@ paths:
       summary: Get Project where InstanceId equals x
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: $filter
           in: query
@@ -510,7 +537,8 @@ paths:
       summary: Get Child Folders
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: $filter
           in: query
@@ -619,7 +647,8 @@ paths:
       summary: Get Child Folders Copy
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: $filter
           in: query
@@ -738,7 +767,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetSpecificDocumentByInstanceId
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters:
         - name: dataSourceAddress
           in: path
@@ -769,7 +799,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetSpecificDocumentFileByInstanceId
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters:
         - name: instanceId
           in: path
@@ -793,7 +824,8 @@ paths:
       summary: Get Documents from Folder ID
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters:
         - name: $filter
           in: query
@@ -824,7 +856,8 @@ paths:
       summary: Get all Document file
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters: []
       responses:
         '200':
@@ -843,7 +876,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetTopNDocuments
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters:
         - name: baseurl
           in: path
@@ -879,7 +913,8 @@ paths:
       summary: Get all Documents in Folder
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters: []
       responses:
         '200':
@@ -897,7 +932,8 @@ paths:
       summary: Get all Documents in Document Set
       deprecated: false
       description: ''
-      tags: []
+      tags:
+        - PW_WSG/FlatSet
       parameters: []
       responses:
         '200':
@@ -915,7 +951,8 @@ paths:
       summary: Get all Logical Sets
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/LogicalSet
       parameters:
         - name: $count
           in: query
@@ -939,7 +976,8 @@ paths:
       summary: Get Document Environment Attributes
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters:
         - name: $select
           in: query
@@ -963,7 +1001,8 @@ paths:
       summary: Create Document from local
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters:
         - name: body
           in: body
@@ -1046,7 +1085,8 @@ paths:
       summary: Get all Environments
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Environment
       parameters: []
       responses:
         '200':
@@ -1065,7 +1105,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetTopNEnvironments
-      tags: []
+      tags: 
+        - PW_WSG/Environment
       parameters:
         - name: baseurl
           in: path
@@ -1095,7 +1136,8 @@ paths:
       summary: Get Environment Form Definition
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters:
         - name: $select
           in: query
@@ -1120,7 +1162,8 @@ paths:
       summary: Get Saved Searches by Name
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/SavedSearchDefinition
       parameters:
         - name: $filter
           in: query
@@ -1144,7 +1187,8 @@ paths:
       summary: Get Saved Search and all documents Copy
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/SavedSearchDefinition
       parameters:
         - name: $select
           in: query
@@ -1168,7 +1212,8 @@ paths:
       summary: Get Saved Search and all documents Copy
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/SavedSearchDefinition
       parameters:
         - name: $select
           in: query
@@ -1192,7 +1237,8 @@ paths:
       summary: New Request
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Document
       parameters:
         - name: $select
           in: query
@@ -1235,7 +1281,8 @@ paths:
       summary: New Request
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/SavedSearchDefinition
       parameters:
         - name: $select
           in: query
@@ -1260,7 +1307,8 @@ paths:
       summary: New Request
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/SavedSearchDefinition
       parameters:
         - name: $filter
           in: query
@@ -1297,7 +1345,8 @@ paths:
       summary: Get Project Participants
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: $select
           in: query
@@ -1321,7 +1370,8 @@ paths:
       summary: Get top n UserLists
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/UserCollection
       parameters:
         - name: $top
           in: query
@@ -1345,7 +1395,8 @@ paths:
       summary: Add User to UserList
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/UserCollection
       parameters:
         - name: body
           in: body
@@ -1412,7 +1463,8 @@ paths:
       summary: Get Current User
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/User
       parameters:
         - name: $filter
           in: query
@@ -1442,7 +1494,8 @@ paths:
       summary: Get User by UserName Copy
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/User
       parameters:
         - name: $filter
           in: query
@@ -1472,7 +1525,8 @@ paths:
       summary: Get User by UserName Copy 2
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/User
       parameters:
         - name: body
           in: body
@@ -1526,7 +1580,8 @@ paths:
       summary: Get all Document Sets
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/FlatSet
       parameters: []
       responses:
         '200':
@@ -1544,7 +1599,8 @@ paths:
       summary: Get all Document Sets in a Folder
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters: []
       responses:
         '200':
@@ -1562,7 +1618,8 @@ paths:
       summary: Add Document to Document Set
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/FlatSet
       parameters:
         - name: body
           in: body
@@ -1640,7 +1697,8 @@ paths:
       summary: Create new Document Set
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/FlatSet
       parameters:
         - name: body
           in: body
@@ -1726,7 +1784,8 @@ paths:
       summary: Get Default View by Folder
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/View
       parameters:
         - name: $select
           in: query
@@ -1757,7 +1816,8 @@ paths:
       summary: Get View based on Name
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/View
       parameters:
         - name: $filter
           in: query
@@ -1781,7 +1841,8 @@ paths:
       summary: Get Workflow associated with Folder
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: $select
           in: query
@@ -1805,7 +1866,8 @@ paths:
       summary: New Request
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/CheckOutLocation
       parameters:
         - name: $top
           in: query
@@ -1829,7 +1891,8 @@ paths:
       summary: New Request
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Project
       parameters:
         - name: $select
           in: query
@@ -1853,7 +1916,8 @@ paths:
       summary: New Request
       deprecated: false
       description: ''
-      tags: []
+      tags: 
+        - PW_WSG/Interface
       parameters:
         - name: $filter
           in: query
@@ -1878,7 +1942,8 @@ paths:
       summary: Get Project Access Rights
       deprecated: false
       description: ''
-      tags: []
+      tags:
+        - PW_WSG/ProjectAccessRights
       parameters:
         - name: dataSourceAddress
           in: path
@@ -1909,7 +1974,8 @@ paths:
       deprecated: false
       description: ''
       operationId: GetEcPropDefinitions
-      tags: []
+      tags: 
+        - MetaSchema/ECPropertyDef
       parameters:
         - name: baseurl
           in: path
@@ -2032,7 +2098,8 @@ paths:
       deprecated: false
       description: Return JSON package for the Datasources present on the Hub queried
       operationId: GetDatasourcesOnHub
-      tags: []
+      tags: 
+        - Repositories
       parameters:
         - name: baseurl
           in: path
