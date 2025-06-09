@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: ProjectWise WSG APIs
-  description: ''
+  description: 'Collection of REST API Requests for ProjectWise WSG collated by Chris Andrew'
   version: 1.0.0
 tags:
   - name: '{baseurl}/ws/v2.8/Repositories'
