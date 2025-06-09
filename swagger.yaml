@@ -4,7 +4,7 @@ info:
   description: 'Collection of REST API Requests for ProjectWise WSG collated by Chris Andrew'
   version: 1.0.0
 tags:
-  - name: '{baseurl}/ws/v2.8/Repositories'
+  - name: '/v2.8/Repositories'
   - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
   - name: >-
       {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}
@@ -2276,14 +2276,14 @@ paths:
           headers: {}
       security:
         - basic: []
-  /{baseurl}/ws/v2.8/Repositories/:
+  /v2.8/Repositories/:
     get:
       summary: Get Datasources on Hub
       deprecated: false
       description: Return JSON package for the Datasources present on the Hub queried
       operationId: GetDatasourcesOnHub
       tags:
-        - '{baseurl}/ws/v2.8/Repositories'
+        - '/v2.8/Repositories'
       parameters:
         - name: baseurl
           in: path
