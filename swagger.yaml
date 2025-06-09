@@ -4,16 +4,12 @@ info:
   description: ''
   version: 1.0.0
 tags:
-  - name: '{baseurl}'
-  - name: '{baseurl}/ws'
-  - name: '{baseurl}/ws/v2.8'
   - name: '{baseurl}/ws/v2.8/Repositories'
   - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}'
   - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation'
   - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
   - name: >-
       {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG'
   - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
   - name: >-
       {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
@@ -35,7 +31,6 @@ tags:
   - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Interface'
   - name: >-
       {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectAccessRights
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/MetaSchema'
   - name: >-
       {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef
 paths:
@@ -2493,6 +2488,8 @@ components:
     basic:
       type: http
       scheme: basic
-servers: []
+servers: 
+  - url: https://name.pw.ws.bentley.com/ws
+    description: Server description
 security:
   - basic: []
