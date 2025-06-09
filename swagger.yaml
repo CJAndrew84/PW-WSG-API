@@ -2484,7 +2484,7 @@ components:
       type: http
       scheme: basic
 servers: 
-  - url: https://{hubName}.pw.ws.bentley.com/ws
+  - url: https://{hubName}-pw-ws.bentley.com/ws
     description: Server description
     variables:
       hubName:
