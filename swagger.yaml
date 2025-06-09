@@ -5,8 +5,6 @@ info:
   version: 1.0.0
 tags:
   - name: '{baseurl}/ws/v2.8/Repositories'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation'
   - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
   - name: >-
       {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}
