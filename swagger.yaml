@@ -2484,7 +2484,11 @@ components:
       type: http
       scheme: basic
 servers: 
-  - url: https://name.pw.ws.bentley.com/ws
+  - url: https://{hubName}.pw.ws.bentley.com/ws
     description: Server description
+    variables:
+      hubName:
+        default: demo-uk
+        description: Hub Name assigned by Bentley Customer usually companyName-Region or just a Name.
 security:
   - basic: []
