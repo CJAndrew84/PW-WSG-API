@@ -5,34 +5,34 @@ info:
   version: 1.0.0
 tags:
   - name: '/v2.8/Repositories'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
+  - name: '/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
   - name: >-
-      {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
+      /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
   - name: >-
-      {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
+      /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
   - name: >-
-      {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents/{instanceId}
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environments'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/UserLists'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Users'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Views'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Workflow'
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/CheckOutLocation'
+      /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents/{instanceId}
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environments'
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches'
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/UserLists'
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Users'
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Views'
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Workflow'
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/CheckOutLocation'
   - name: >-
-      {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectParticipants
+      /v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectParticipants
   - name: >-
-      {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectParticipants/{instanceId}
-  - name: '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Interface'
+      /v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectParticipants/{instanceId}
+  - name: '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Interface'
   - name: >-
-      {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectAccessRights
+     /v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectAccessRights
   - name: >-
-      {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef
+      /v2.8/Repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef
 paths:
-  /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}/NavNode!poly:
+  /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}/NavNode!poly:
     get:
       summary: ChildNavNodes
       deprecated: false
@@ -40,15 +40,8 @@ paths:
       operationId: GetAllChildNavNode
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}
+          /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode/{instanceId}
       parameters:
-        - name: baseurl
-          in: path
-          description: ''
-          required: true
-          example: '{{hubAddress}}{{baseUrl}}'
-          schema:
-            type: string
         - name: dataSourceAddress
           in: path
           description: ''
@@ -74,22 +67,15 @@ paths:
           headers: {}
       security:
         - basic: []
-  /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode!poly:
+  /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode!poly:
     get:
       summary: Get Top n NavNodes
       deprecated: false
       description: ''
       operationId: GetTopXNavNode
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
+        - '/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
       parameters:
-        - name: baseurl
-          in: path
-          description: ''
-          required: true
-          example: '{{hubAddress}}{{baseUrl}}'
-          schema:
-            type: string
         - name: dataSourceAddress
           in: path
           description: ''
@@ -200,7 +186,7 @@ paths:
       description: ''
       operationId: GetNavNodeWhereLabelIsLikeProjectNumber
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
+        - '/v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode'
       parameters:
         - name: dataSourceAddress
           in: path
@@ -235,7 +221,7 @@ paths:
       operationId: GetProjectResources
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
       parameters:
         - name: dataSourceAddress
           in: path
@@ -277,7 +263,7 @@ paths:
       operationId: GetUserListThatHaveAccessToFolder
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectParticipants/{instanceId}
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectParticipants/{instanceId}
       parameters:
         - name: dataSourceAddress
           in: path
@@ -319,7 +305,7 @@ paths:
       operationId: GetDocumentsInProjectByInstanceId
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
       parameters:
         - name: dataSourceAddress
           in: path
@@ -361,7 +347,7 @@ paths:
       operationId: GetProjectsInProjectByInstanceId
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects/{instanceId}
       parameters:
         - name: dataSourceAddress
           in: path
@@ -402,7 +388,7 @@ paths:
       description: ''
       operationId: GetTopNFoldersOnDatasource
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
       parameters:
         - name: dataSourceAddress
           in: path
