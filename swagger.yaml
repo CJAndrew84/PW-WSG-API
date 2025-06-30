@@ -179,7 +179,7 @@ paths:
                   - instances
           headers: {}
       security: []
-  /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode!poly:
+  /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode!poly?$filter=Label+like+'{{ProjectNumber}}':
     get:
       summary: Get NavNode where Label is like Project Number
       deprecated: false
@@ -510,13 +510,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/ProjectDocumentAccessRights:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectDocumentAccessRights:
     get:
       summary: GetProjectDocumentAccessRights
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
       parameters: []
       responses:
         '200':
@@ -529,13 +529,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project!poly?$filter=instanceId+eq+'{{instanceId}}':
     get:
       summary: Get Project where InstanceId equals x
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
       parameters:
         - name: $filter
           in: query
@@ -555,20 +555,20 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project?$filter=ProjectParent-forward-Project.$id+eq+'{{folderId}}'+and+Name+eq+'{{folderName}}':
     get:
       summary: Get Child Folders
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
       parameters:
         - name: $filter
           in: query
           description: ''
           required: true
           example: >-
-            ProjectParent-forward-Project.$id+eq+%27{{folderId}}%27+and+Name+eq+%27DDC%27
+            ProjectParent-forward-Project.$id+eq+%27{{folderId}}%27+and+Name+eq+%27{{folderName}}%27
           schema:
             type: string
         - name: $select
@@ -594,7 +594,7 @@ paths:
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
       parameters: []
       requestBody:
         content:
@@ -684,13 +684,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /v2.8/Repositories/dataSourceAddress/PW_WSG/Project:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project?$filter=ProjectParent-forward-Project.$id+eq+'{{folderId}}':
     get:
       summary: Get Child Folders Copy
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Projects'
       parameters:
         - name: $filter
           in: query
@@ -813,7 +813,7 @@ paths:
       operationId: GetSpecificDocumentByInstanceId
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents/{instanceId}
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents/{instanceId}
       parameters:
         - name: dataSourceAddress
           in: path
@@ -840,7 +840,7 @@ paths:
           headers: {}
       security:
         - basic: []
-  /v2.8/Repositories/dataSourceAddress/PW_WSG/Document/{instanceId}/$file:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document/{instanceId}/$file:
     get:
       summary: Get Specific Document File by InstanceId
       deprecated: false
@@ -848,7 +848,7 @@ paths:
       operationId: GetSpecificDocumentFileByInstanceId
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents/{instanceId}
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents/{instanceId}
       parameters:
         - name: instanceId
           in: path
@@ -868,13 +868,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document!poly?$filter=DocumentParent-forward-Project.$id+eq+'{{folderId}}':
     get:
       summary: Get Documents from Folder ID
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
       parameters:
         - name: $filter
           in: query
@@ -902,33 +902,14 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document/72cbe34c-5c21-47aa-9ec5-a0fc092cbeee/$file:
-    get:
-      summary: Get all Document file
-      deprecated: false
-      description: ''
-      tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-          headers: {}
-      security:
-        - basic: []
-  /{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document!poly:
     get:
       summary: Get Top N Documents
       deprecated: false
       description: ''
       operationId: GetTopNDocuments
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
       parameters:
         - name: baseurl
           in: path
@@ -962,13 +943,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project/instanceId/Document!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project/{instanceId}/Document!poly:
     get:
       summary: Get all Documents in Folder
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
       parameters: []
       responses:
         '200':
@@ -981,13 +962,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/FlatSet/instanceId/Document!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/FlatSet/{instanceId}/Document!poly:
     get:
       summary: Get all Documents in Document Set
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
       parameters: []
       responses:
         '200':
@@ -1000,13 +981,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/LogicalSet/1f2a924c-d530-4dc6-9f56-89b301dcced7/Document:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/LogicalSet/{instanceId}/Document:
     get:
       summary: Get all Logical Sets
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
       parameters:
         - name: $count
           in: query
@@ -1026,13 +1007,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document/documentId/:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document/{instanceId}/:
     get:
       summary: Get Document Environment Attributes
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
       parameters:
         - name: $select
           in: query
@@ -1052,13 +1033,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document:
     post:
       summary: Create Document from local
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
       parameters: []
       requestBody:
         content:
@@ -1153,13 +1134,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Environment!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environment!poly:
     get:
       summary: Get all Environments
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environments'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environments'
       parameters: []
       responses:
         '200':
@@ -1172,22 +1153,15 @@ paths:
           headers: {}
       security:
         - basic: []
-  /{baseurl}/ws/v2.8/Repositories/dataSourceAddress/PW_WSG/Environment!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environment!poly?$filter=Name+eq+'{{environmentName}}':
     get:
       summary: Get Top n Environments
       deprecated: false
       description: ''
       operationId: GetTopNEnvironments
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environments'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environments'
       parameters:
-        - name: baseurl
-          in: path
-          description: ''
-          required: true
-          example: '{{hubAddress}}{{baseUrl}}'
-          schema:
-            type: string
         - name: $top
           in: query
           description: ''
@@ -1206,13 +1180,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Document/instanceId:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document/{instanceId}?$select=PW_WSG.DocumentEnvironment-forward-PW_WSG.Environment!poly/PW_WSG.EnvironmentFormDefinition-forward-Forms_EC_Mapping.FormDefinition.*:
     get:
       summary: Get Environment Form Definition
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environments'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environments'
       parameters:
         - name: $select
           in: query
@@ -1233,14 +1207,14 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/SavedSearchDefinition!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearchDefinition!poly:
     get:
       summary: Get Saved Searches by Name
       deprecated: false
       description: ''
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
       parameters:
         - name: $filter
           in: query
@@ -1260,14 +1234,14 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/SavedSearchDefinition/instanceId/:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearchDefinition/{instanceId}/:
     get:
       summary: Get Saved Search and all documents Copy
       deprecated: false
       description: ''
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
       parameters:
         - name: $select
           in: query
@@ -1287,14 +1261,14 @@ paths:
           headers: {}
       security:
         - basic: []
-  /v2.8/Repositories/dataSourceAddress/PW_WSG/SavedSearchDefinition/3777/:
+  
     get:
       summary: Get Saved Search and all documents Copy
       deprecated: false
       description: ''
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
       parameters:
         - name: $select
           in: query
@@ -1314,132 +1288,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /ws/v2.8/repositories/Bentley.PW--aecom-uk-pw.bentley.com~3AAECOM_DS02_UK-CLT/PW_WSG/Document!poly:
-    get:
-      summary: New Request
-      deprecated: false
-      description: ''
-      tags:
-        - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
-      parameters:
-        - name: $select
-          in: query
-          description: ''
-          required: true
-          example: >-
-            *,DocumentParent-forward-Project.*,DocumentEnvironment-forward-Environment!poly.*
-          schema:
-            type: string
-        - name: api.ancestor
-          in: query
-          description: ''
-          required: true
-          example: Project-2ec9717b-d873-4ae7-afb9-dc12f3df281d
-          schema:
-            type: string
-        - name: api.filtersettings
-          in: query
-          description: ''
-          required: true
-          example: CaseInsensitive
-          schema:
-            type: string
-        - name: $filter
-          in: query
-          description: ''
-          required: true
-          example: (((FileName%20ne%20%27null%27)%20and%20IsLatest%20eq%20true))
-          schema:
-            type: string
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-          headers: {}
-      security:
-        - basic: []
-  /ws/v2.8/repositories/Bentley.PW--aecom-uk-pw.bentley.com~3AAECOM_DS02_UK-CLT/PW_WSG/savedsearchdefinition/3751:
-    get:
-      summary: New Request
-      deprecated: false
-      description: ''
-      tags:
-        - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
-      parameters:
-        - name: $select
-          in: query
-          description: ''
-          required: true
-          example: >-
-            SavedSearchDefaultDocumentListView-forward-View.*,SavedSearchDefaultDocumentListView-forward-View/ViewColumn-forward-Column.*
-          schema:
-            type: string
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-          headers: {}
-      security:
-        - basic: []
-  /ws/v2.8/repositories/Bentley.PW--aecom-uk-pw.bentley.com~3AAECOM_DS02_UK-CLT/PW_WSG/savedsearchdefinition:
-    get:
-      summary: New Request
-      deprecated: false
-      description: ''
-      tags:
-        - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
-      parameters:
-        - name: $filter
-          in: query
-          description: ''
-          required: true
-          example: $id+eq+%273751%27
-          schema:
-            type: string
-        - name: $select
-          in: query
-          description: ''
-          required: true
-          example: >-
-            SavedSearchResult-forward-Document!poly.*,SavedSearchResult-forward-Document!poly/PW_WSG.DocumentEnvironment!poly-forward-PW_WSG.Environment!poly.*,SavedSearchResult-forward-Document!poly/PW_WSG.DocumentParent-forward-Project.*
-          schema:
-            type: string
-        - name: api.filtersettings
-          in: query
-          description: ''
-          required: true
-          example: CaseInsensitive
-          schema:
-            type: string
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-          headers: {}
-      security:
-        - basic: []
-  /baseUrlv2.8/repositories/dataSourceAddress/PW_WSG/Project/instanceId:
+  /v2.8/repositories/{dataSourceAddress}/PW_WSG/Project/{instanceId}:
     get:
       summary: Get Project Participants
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/UserLists'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/UserLists'
       parameters:
         - name: $select
           in: query
@@ -1459,13 +1314,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/repositories/dataSourceAddress/PW_WSG/UserCollection!poly:
+  /v2.8/repositories/{dataSourceAddress}/PW_WSG/UserCollection!poly:
     get:
       summary: Get top n UserLists
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/UserLists'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/UserLists'
       parameters:
         - name: $top
           in: query
@@ -1485,13 +1340,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/repositories/dataSourceAddress/PW_WSG/UserCollection/userCollectionID:
+  /v2.8/repositories/{dataSourceAddress}/PW_WSG/UserCollection/{userCollectionID}:
     post:
       summary: Add User to UserList
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/UserLists'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/UserLists'
       parameters: []
       requestBody:
         content:
@@ -1566,13 +1421,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/User:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/User:
     get:
       summary: Get Current User
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Users'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Users'
       parameters:
         - name: $filter
           in: query
@@ -1599,13 +1454,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/User!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/User!poly:
     get:
       summary: Get User by UserName Copy
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Users'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Users'
       parameters:
         - name: $filter
           in: query
@@ -1632,13 +1487,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/User/200/:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/User/{instanceId}/:
     post:
       summary: Get User by UserName Copy 2
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Users'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Users'
       parameters: []
       requestBody:
         content:
@@ -1695,13 +1550,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/FlatSet!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/FlatSet!poly:
     get:
       summary: Get all Document Sets
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
       parameters: []
       responses:
         '200':
@@ -1714,13 +1569,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project/instanceId/FlatSet!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project/{instanceId}/FlatSet!poly:
     get:
       summary: Get all Document Sets in a Folder
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
       parameters: []
       responses:
         '200':
@@ -1733,13 +1588,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/FlatSet/instanceId:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/FlatSet/{instanceId}:
     post:
       summary: Add Document to Document Set
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
       parameters: []
       requestBody:
         content:
@@ -1828,13 +1683,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/FlatSet:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/FlatSet:
     post:
       summary: Create new Document Set
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Sets'
       parameters: []
       requestBody:
         content:
@@ -1933,13 +1788,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/View!poly:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/View!poly:
     get:
       summary: Get Default View by Folder
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Views'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Views'
       parameters:
         - name: $select
           in: query
@@ -1967,13 +1822,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/View/:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/View/:
     get:
       summary: Get View based on Name
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Views'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Views'
       parameters:
         - name: $filter
           in: query
@@ -1993,13 +1848,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project/instanceId:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project/{instanceId}?$select=ProjectResource-forward-Workflow.*:
     get:
       summary: Get Workflow associated with Folder
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Workflow'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Workflow'
       parameters:
         - name: $select
           in: query
@@ -2019,14 +1874,14 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/repositories/dataSourceAddress/PW_WSG/CheckOutLocation!poly:
+  /v2.8/repositories/{dataSourceAddress}/PW_WSG/CheckOutLocation!poly:
     get:
       summary: New Request
       deprecated: false
       description: ''
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/CheckOutLocation
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/CheckOutLocation
       parameters:
         - name: $top
           in: query
@@ -2046,14 +1901,14 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Project/folderId:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project/{folderId}:
     options:
       summary: New Request
       deprecated: false
       description: ''
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectParticipants
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectParticipants
       parameters:
         - name: $select
           in: query
@@ -2073,13 +1928,13 @@ paths:
           headers: {}
       security:
         - basic: []
-  /baseUrlv2.8/Repositories/dataSourceAddress/PW_WSG/Interface:
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Interface:
     get:
       summary: New Request
       deprecated: false
       description: ''
       tags:
-        - '{baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Interface'
+        - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Interface'
       parameters:
         - name: $filter
           in: query
@@ -2107,7 +1962,7 @@ paths:
       description: ''
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectAccessRights
+          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/ProjectAccessRights
       parameters:
         - name: dataSourceAddress
           in: path
@@ -2134,7 +1989,7 @@ paths:
           headers: {}
       security:
         - basic: []
-  /{baseurl}/ws/v2.8/repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef:
+  /v2.8/repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef:
     get:
       summary: GetEcPropDefinitions
       deprecated: false
@@ -2142,7 +1997,7 @@ paths:
       operationId: GetEcPropDefinitions
       tags:
         - >-
-          {baseurl}/ws/v2.8/Repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef
+          /v2.8/Repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef
       parameters:
         - name: baseurl
           in: path
