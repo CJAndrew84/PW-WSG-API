@@ -911,13 +911,6 @@ paths:
       tags:
         - '/v2.8/Repositories/{dataSourceAddress}/PW_WSG/Documents'
       parameters:
-        - name: baseurl
-          in: path
-          description: ''
-          required: true
-          example: '{{hubAddress}}{{baseUrl}}'
-          schema:
-            type: string
         - name: dataSourceAddress
           in: path
           description: ''
@@ -1235,33 +1228,6 @@ paths:
       security:
         - basic: []
   /v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearchDefinition/{instanceId}/:
-    get:
-      summary: Get Saved Search and all documents Copy
-      deprecated: false
-      description: ''
-      tags:
-        - >-
-          /v2.8/Repositories/{dataSourceAddress}/PW_WSG/SavedSearches
-      parameters:
-        - name: $select
-          in: query
-          description: ''
-          required: true
-          example: SavedSearchResult-forward-Document!poly.*,*
-          schema:
-            type: string
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-          headers: {}
-      security:
-        - basic: []
-  
     get:
       summary: Get Saved Search and all documents Copy
       deprecated: false
@@ -1999,13 +1965,6 @@ paths:
         - >-
           /v2.8/Repositories/{dataSourceAddress}/MetaSchema/ECPropertyDef
       parameters:
-        - name: baseurl
-          in: path
-          description: ''
-          required: true
-          example: '{{hubAddress}}{{baseUrl}}'
-          schema:
-            type: string
         - name: dataSourceAddress
           in: path
           description: ''
@@ -2125,14 +2084,6 @@ paths:
       operationId: GetDatasourcesOnHub
       tags:
         - '/v2.8/Repositories'
-      parameters:
-        - name: baseurl
-          in: path
-          description: ''
-          required: true
-          example: '{{hubAddress}}{{baseUrl}}'
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
