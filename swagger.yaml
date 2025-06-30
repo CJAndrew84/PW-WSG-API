@@ -179,7 +179,7 @@ paths:
                   - instances
           headers: {}
       security: []
-  /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode!poly?$filter=Label+like+'{{ProjectNumber}}':
+  /v2.8/Repositories/{dataSourceAddress}/Navigation/NavNode!poly?$filter=Label+like+'{ProjectNumber}':
     get:
       summary: Get NavNode where Label is like Project Number
       deprecated: false
@@ -529,7 +529,7 @@ paths:
           headers: {}
       security:
         - basic: []
-  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project!poly?$filter=instanceId+eq+'{{instanceId}}':
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project!poly?$filter=instanceId+eq+'{instanceId}':
     get:
       summary: Get Project where InstanceId equals x
       deprecated: false
@@ -555,7 +555,7 @@ paths:
           headers: {}
       security:
         - basic: []
-  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project?$filter=ProjectParent-forward-Project.$id+eq+'{{folderId}}'+and+Name+eq+'{{folderName}}':
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project?$filter=ProjectParent-forward-Project.$id+eq+'{folderId}'+and+Name+eq+'{folderName}':
     get:
       summary: Get Child Folders
       deprecated: false
@@ -684,7 +684,7 @@ paths:
           headers: {}
       security:
         - basic: []
-  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project?$filter=ProjectParent-forward-Project.$id+eq+'{{folderId}}':
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Project?$filter=ProjectParent-forward-Project.$id+eq+'{folderId}':
     get:
       summary: Get Child Folders Copy
       deprecated: false
@@ -868,7 +868,7 @@ paths:
           headers: {}
       security:
         - basic: []
-  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document!poly?$filter=DocumentParent-forward-Project.$id+eq+'{{folderId}}':
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Document!poly?$filter=DocumentParent-forward-Project.$id+eq+'{folderId}':
     get:
       summary: Get Documents from Folder ID
       deprecated: false
@@ -1146,7 +1146,7 @@ paths:
           headers: {}
       security:
         - basic: []
-  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environment!poly?$filter=Name+eq+'{{environmentName}}':
+  /v2.8/Repositories/{dataSourceAddress}/PW_WSG/Environment!poly?$filter=Name+eq+'{environmentName}':
     get:
       summary: Get Top n Environments
       deprecated: false
