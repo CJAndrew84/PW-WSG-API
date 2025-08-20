@@ -1299,14 +1299,14 @@ paths:
           in: query
           description: ''
           required: false
-          example: '$id+eq+'{{userCollectionID}}''
+          example: $id+eq+'{{userCollectionID}}'
           schema:
             type: string
         - name: $select
           in: query
           description: ''
           required: false
-          example: 'Member-forward-User!poly.*,*'
+          example: Member-forward-User!poly.*,*
           schema:
             type: string
       responses:
