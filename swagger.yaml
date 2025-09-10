@@ -2296,5 +2296,12 @@ servers:
       hubName:
         default: demo-uk
         description: Hub Name assigned by Bentley Customer usually companyName-Region or just a Name.
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
 security:
   - basic: []
+  - bearerAuth: []
